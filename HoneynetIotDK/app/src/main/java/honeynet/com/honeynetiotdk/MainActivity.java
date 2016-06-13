@@ -2,6 +2,7 @@ package honeynet.com.honeynetiotdk;
 
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +13,9 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -63,11 +66,13 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (checkInternetConenction()) {
-                        new GetTask().execute(IotConstant.TURN_ON_LIGHT_URL);
+                        String param = IotConstant.ACTION_URL + "?" + IotConstant.TURN_ON_LIGHT_PARA;
+                        new GetTask().execute(param);
                     }
                 } else {
                     if (checkInternetConenction()) {
-                        new GetTask().execute(IotConstant.TURN_OFF_LIGHT_URL);
+                        String param = IotConstant.ACTION_URL + "?" + IotConstant.TURN_OFF_LIGHT_PARA;
+                        new GetTask().execute(param);
                     }
                 }
             }
@@ -76,13 +81,16 @@ public class MainActivity extends AppCompatActivity {
         pumpSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked) {
                     if (checkInternetConenction()) {
-                        new GetTask().execute(IotConstant.TURN_ON_PUMP_URL);
+                        String param = IotConstant.ACTION_URL + "?" + IotConstant.TURN_ON_PUMP_PARA;
+                        new GetTask().execute(param);
                     }
                 } else {
                     if (checkInternetConenction()) {
-                        new GetTask().execute(IotConstant.TURN_OFF_PUMP_URL);
+                        String param = IotConstant.ACTION_URL + "?" + IotConstant.TURN_OFF_PUMP_PARA;
+                        new GetTask().execute(param);
                     }
                 }
             }
@@ -123,12 +131,12 @@ public class MainActivity extends AppCompatActivity {
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
-            Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+
             return true;
         }else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
                         connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
-            Toast.makeText(this, " Not Connected ", Toast.LENGTH_SHORT).show();
+
             return false;
         }
         return false;
@@ -152,30 +160,37 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String downloadContent(String myurl) throws IOException {
-        InputStream is = null;
-        int length = 500;
+    private String downloadContent(String param) throws IOException {
 
-        try {
-            URL url = new URL(myurl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
-            conn.setRequestMethod("GET");
-            conn.setDoInput(true);
-            conn.connect();
-            int response = conn.getResponseCode();
-            Log.d(TAG, "The response is: " + response);
-            is = conn.getInputStream();
+        String url = param;
 
-            // Convert the InputStream into a string
-            String contentAsString = convertInputStreamToString(is, length);
-            return contentAsString;
-        } finally {
-            if (is != null) {
-                is.close();
-            }
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+        // optional default is GET
+        con.setRequestMethod("GET");
+
+        //add request header
+//        con.setRequestProperty("User-Agent", USER_AGENT);
+
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'GET' request to URL : " + url);
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
         }
+        in.close();
+
+        //print result
+        System.out.println(response.toString());
+
+        return response.toString();
     }
 
     public String convertInputStreamToString(InputStream stream, int length) throws IOException, UnsupportedEncodingException {

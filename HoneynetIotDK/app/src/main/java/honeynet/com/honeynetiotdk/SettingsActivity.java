@@ -47,6 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveSettingToFile();
+                new Intent(getApplicationContext(), MainActivity.class);
             }
         });
 

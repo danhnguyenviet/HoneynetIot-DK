@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="#f80c00"
             android:gravity="center"
-            android:text="HONEYNETIoT Điều khiển"
+            android:text="Bảng điều khiển"
             android:textColor="#FFFFFF"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -49,6 +49,7 @@
                         android:id="@+id/edIP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:editable="false"
                         android:ems="10" />
                 </LinearLayout>
 
@@ -66,6 +67,7 @@
                         android:id="@+id/edPort"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:editable="false"
                         android:ems="3"
                         android:text="8080">
 

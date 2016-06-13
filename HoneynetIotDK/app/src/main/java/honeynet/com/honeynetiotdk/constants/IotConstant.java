@@ -1,23 +1,21 @@
 package honeynet.com.honeynetiotdk.constants;
 
-import android.content.Context;
-
-import java.io.IOException;
-
 /**
  * Created by Danh on 6/10/2016.
  */
+// http://www.appifiedtech.net/2015/06/13/android-http-request-example/
 public class IotConstant {
 
-    public static String IP         = "192.168.238.239";
+    public static String IP         = "203.162.51.92";
     public static String PORT       = "8080";
-    public static String FP1        = "GPIO1"; // Pump
-    public static String FP2        = "GPIO2"; // Light
+    public static String FP1        = "1"; // Pump
+    public static String FP2        = "2"; // Light
 
-    public static String TURN_ON_LIGHT_URL          = "http://" + IP + ":" + PORT + "/report1/mobile/api.php?" + FP1 + "=ON&id=1";
-    public static String TURN_OFF_LIGHT_URL         = "http://" + IP + ":" + PORT + "/report1/mobile/api.php?" + FP1 + "=OFF&id=1";
-    public static String TURN_ON_PUMP_URL           = "http://" + IP + ":" + PORT + "/report1/mobile/api.php?" + FP2 + "=ON&id=2";
-    public static String TURN_OFF_PUMP_URL          = "http://" + IP + ":" + PORT + "/report1/mobile/api.php?" + FP2 + "=OFF&id=2";
+    public static String ACTION_URL                 = "http://" + IP + "/report1/mobie/api.php";
+    public static String TURN_ON_LIGHT_PARA         = "gpio=" + FP1 + "&status=1&id=1";
+    public static String TURN_OFF_LIGHT_PARA        = "gpio=" + FP1 + "&status=0&id=1";
+    public static String TURN_ON_PUMP_PARA          = "gpio=" + FP2 + "&status=1&id=2";
+    public static String TURN_OFF_PUMP_PARA         = "gpio=" + FP2 + "&status=0&id=2";
 
     public final static String SETTINGS_FILE_NAME   = "settings.txt";
 }
