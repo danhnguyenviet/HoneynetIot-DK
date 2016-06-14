@@ -18,4 +18,17 @@ public class IotConstant {
     public static String TURN_OFF_PUMP_PARA         = "gpio=" + FP2 + "&status=0&id=2";
 
     public final static String SETTINGS_FILE_NAME   = "settings.txt";
+
+
+    public final static String URL_TEMPERATURE_CHART = "http://" + IP + "/report1/mobie/get_temperature.php";
+
+
+    /**
+     * URL_GET_VALUE_TEMPERATURE_CHART
+     * @param macDevice Mac of Device
+     * @return String url
+     */
+    public static String URL_GET_VALUE_TEMPERATURE_CHART(String macDevice){
+        return URL_TEMPERATURE_CHART + "?mac=" + macDevice;
+    }
 }

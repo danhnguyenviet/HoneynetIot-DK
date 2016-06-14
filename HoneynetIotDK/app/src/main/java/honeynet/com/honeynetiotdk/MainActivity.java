@@ -116,6 +116,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Calling Graph Activity
+     * @param view
+     */
+    public void callGraphActivity(View view) {
+        Intent intent = new Intent(this, GraphActivity.class);
+        startActivity(intent);
+    }
+
 
     /**
      * Check the Internet connection. Return true if phone has connection.

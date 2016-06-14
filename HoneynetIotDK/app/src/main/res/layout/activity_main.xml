@@ -150,8 +150,20 @@
                         android:text="Giới thiệu"
                         android:layout_marginLeft="5dp"
                         android:onClick="callAboutActivity"/>
+
+                    <Button
+                        android:id="@+id/btnGraph"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#f80c00"
+                        android:text="Biểu đồ"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginLeft="5dp"
+                        android:onClick="callGraphActivity" />
                 </LinearLayout>
+
             </TableRow>
+
         </TableLayout>
     </LinearLayout>
 </ScrollView>
