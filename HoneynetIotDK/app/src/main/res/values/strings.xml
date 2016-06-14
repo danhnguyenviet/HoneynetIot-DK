@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HONEYNET - IoT</string>
+
+    <!--Graph layout-->
+    <string name="tv_selectMonth">Chọn tháng :</string>
+
 </resources>

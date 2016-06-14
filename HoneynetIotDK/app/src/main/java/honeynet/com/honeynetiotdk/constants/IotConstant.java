@@ -28,7 +28,7 @@ public class IotConstant {
      * @param macDevice Mac of Device
      * @return String url
      */
-    public static String URL_GET_VALUE_TEMPERATURE_CHART(String macDevice){
-        return URL_TEMPERATURE_CHART + "?mac=" + macDevice;
+    public static String URL_GET_VALUE_TEMPERATURE_CHART(String macDevice, String month, String year){
+        return URL_TEMPERATURE_CHART + "?mac=" + macDevice + "&month=" + month + "&year=" + year;
     }
 }
