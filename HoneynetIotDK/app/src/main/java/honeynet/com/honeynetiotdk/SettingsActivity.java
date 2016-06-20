@@ -76,6 +76,9 @@ public class SettingsActivity extends AppCompatActivity {
         String sendIp = ipAddress.getText().toString();
         String sendPort = port.getText().toString();
 
+        IotConstant.IP = sendIp;
+        IotConstant.PORT = sendPort;
+
         //Create String FP and send to Server.( FP = "1,2,3,4,5...")
         String listFP = "";
         for (int i = 0; i < arrFP.size(); i++) {

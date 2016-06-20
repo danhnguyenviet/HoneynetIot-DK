@@ -55,7 +55,7 @@ import static java.util.Calendar.getInstance;
 public class GraphActivity extends AppCompatActivity {
 
     //Set default value
-    private String macDevice = "1a:fe:34:a2:ca:19";
+    private String macDevice = "9C:65:F9:1C:29:66";
     private Button btnDatePicker;
     private String datepicked;
 
@@ -66,6 +66,11 @@ public class GraphActivity extends AppCompatActivity {
         setContentView(R.layout.activity_graph);
 
         createWidget();
+
+        Log.d("IPIP", "ip: " + IotConstant.URL_GET_VALUE_TEMPERATURE_CHART(
+                macDevice,
+                String.valueOf(getDMYNow("M") + 1),
+                String.valueOf(getDMYNow("Y"))));
 
         //Set up graph
         new GetValueForChart().execute(IotConstant.URL_GET_VALUE_TEMPERATURE_CHART(

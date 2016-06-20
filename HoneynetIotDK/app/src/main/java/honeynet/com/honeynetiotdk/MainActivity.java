@@ -2,20 +2,16 @@ package honeynet.com.honeynetiotdk;
 
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,9 +20,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import honeynet.com.honeynetiotdk.constants.IotConstant;
@@ -236,12 +230,22 @@ public class MainActivity extends AppCompatActivity {
                 IotConstant.FP1 = fp[0];
                 IotConstant.FP2 = fp[1];
 
-                edIP.setText(IotConstant.IP);
-                edPort.setText(IotConstant.PORT);
+                IotConstant.updateAfterReadingData();
             }
         } else {
             edIP.setText(IotConstant.IP);
             edPort.setText(IotConstant.PORT);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Set ip value in IotConstant
+        IotConstant.setUrlTemperatureChart(IotConstant.IP);
+
+        edIP.setText(IotConstant.IP);
+        edPort.setText(IotConstant.PORT);
     }
 }

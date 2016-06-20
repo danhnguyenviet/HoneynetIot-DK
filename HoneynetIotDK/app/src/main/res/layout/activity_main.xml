@@ -89,7 +89,7 @@
                         android:id="@+id/ic_light"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_light" />
+                        android:src="@mipmap/ic_pump" />
 
                     <Switch
                         android:id="@+id/switchLight"
@@ -112,7 +112,7 @@
                         android:id="@+id/ic_pump"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_pump" />
+                        android:src="@mipmap/ic_light" />
 
                     <Switch
                         android:id="@+id/switchPump"

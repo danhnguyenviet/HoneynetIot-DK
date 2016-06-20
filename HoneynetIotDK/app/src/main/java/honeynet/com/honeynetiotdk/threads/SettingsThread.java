@@ -93,6 +93,10 @@ public class SettingsThread extends Thread {
                 String port = arrayList.get(1);
                 String[] fp = arrayList.get(2).split(",");
 
+                //Set ip value in IotConstant
+                IotConstant.setUrlTemperatureChart(ip);
+
+                //Set bundle of info
                 Bundle bundle = new Bundle();
                 bundle.putString("flagSetting","readFile");
                 bundle.putString("ip",ip);
@@ -155,6 +159,9 @@ public class SettingsThread extends Thread {
         fileOutputStream.write(saveFP.getBytes());
 
         fileOutputStream.close();
+
+        //Set ip value in IotConstant
+        IotConstant.setUrlTemperatureChart(ip);
 
         Bundle bundle = new Bundle();
         bundle.putString("flagSetting", "saveFile");
